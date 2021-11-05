@@ -1,7 +1,9 @@
 If necessary please sign up using (Username: edward.pasfield@gmail.com Password: LkJhGfDsA44) before running tests.
 If needed please use your own login details or a test account. Update the login informattion in users.json
 
-The modals in this page are very tempramental and Cypress sometimes doesn't pick them up (arbitrary waits have been used to fix this).
+Also if human verification needed please go through that step manually first :) 
+
+The Google Powered Search in this page is very tempramental and Cypress sometimes doesn't pick them up (arbitrary waits have been used to fix this).
 
 INSTALL MOCHAWESOME
 
