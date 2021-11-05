@@ -1,0 +1,133 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-11-05T09:21:23.991Z",
+    "end": "2021-11-05T09:21:49.269Z",
+    "duration": 18676,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "4ef4c504-857b-4482-8ee2-01c3fcc293ee",
+      "title": "",
+      "fullFile": "cypress/integration/vouchercodes.e2e.js",
+      "file": "cypress/integration/vouchercodes.e2e.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fc486ccd-3950-4d52-aab5-e9469d3f355d",
+          "title": "Food Restaurants",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Search London for local deals (Any location, Any number of people)",
+              "fullTitle": "Food Restaurants Search London for local deals (Any location, Any number of people)",
+              "timedOut": null,
+              "duration": 12336,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Wait for homepage to load\ncy.wait(\"@homepageLoad\"); // Use the 'Food' navigation menu item\ncy.get(\":nth-child(4) > .swipey__anchor\").click(); // Verify correct url redirection\ncy.url().should(\"contain\", \"restaurant-vouchers.html\"); // Search for London\ncy.get(\"#google-autocomplete\").type(city);\ncy.get(\"#google-autocomplete\").click(); // necessary for the google powered search (not too sure how this integrates into the page)\ncy.wait(1000);\ncy.get(\"#google-autocomplete\").trigger(\"keydown\", {\n  keyCode: 40\n});\ncy.get(\"#google-autocomplete\").trigger(\"keyup\", {\n  keyCode: 40\n});\ncy.get(\"#google-autocomplete\").trigger(\"keydown\", {\n  keyCode: 13\n}); // enter location selection\ncy.get(\".px-12\").click(); // Assert each offer is based in London\ncy.get(\".main-content\").each(() => {\n  cy.get(\".mx-3\").should(\"contain\", city);\n}); // Assert page has searched for London, UK\ncy.url().should(\"contain\", \"London,%20UK\");",
+              "err": {},
+              "uuid": "82472507-305a-4667-9ded-dc93863e88e5",
+              "parentUUID": "fc486ccd-3950-4d52-aab5-e9469d3f355d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Assert 'Food' has correct number of offers (Deliberate Fail)",
+              "fullTitle": "Food Restaurants Assert 'Food' has correct number of offers (Deliberate Fail)",
+              "timedOut": null,
+              "duration": 6340,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Wait for homepage to load\ncy.wait(\"@homepageLoad\"); // Use the 'Students' navigation menu item\ncy.get(\":nth-child(4) > .swipey__anchor\").click();\nvar count = 0;\ncy.get(\".main-content\").each(() => {\n  count += 1;\n  cy.log(\"Offer Item : \" + count);\n  if (count === 11) {\n    throw new Error(\"There might be a 12th but we cannot tell as error is thrown at 11\");\n  }\n});",
+              "err": {
+                "message": "Error: There might be a 12th but we cannot tell as error is thrown at 11",
+                "estack": "Error: There might be a 12th but we cannot tell as error is thrown at 11\n    at Context.eval (https://www.vouchercodes.co.uk/__cypress/tests?p=cypress/integration/vouchercodes.e2e.js:149:15)",
+                "diff": null
+              },
+              "uuid": "96d8226c-cf4c-472c-87d1-cc1d196ef480",
+              "parentUUID": "fc486ccd-3950-4d52-aab5-e9469d3f355d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "82472507-305a-4667-9ded-dc93863e88e5"
+          ],
+          "failures": [
+            "96d8226c-cf4c-472c-87d1-cc1d196ef480"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 18676,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.0"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "showPassed": true,
+        "reportTitle": "AQA-Report"
+      },
+      "version": "6.0.0"
+    }
+  }
+}
